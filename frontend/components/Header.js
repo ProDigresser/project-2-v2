@@ -11,10 +11,10 @@ const Header = () => {
 
     <div className="navBar">
       <div className="navLink">
-        <Link to={'/project-2/'} style={{ textDecoration: 'none', color: '#D9B08C' }}>Home</Link>
+        <Link to={'/'} style={{ textDecoration: 'none', color: '#D9B08C' }}>Home</Link>
       </div>
       <div className="navLink">
-        <Link to={'/project-2/authors'} style={{ textDecoration: 'none', color: '#D9B08C' }}>Authors</Link>
+        <Link to={'/authors'} style={{ textDecoration: 'none', color: '#D9B08C' }}>Authors</Link>
       </div>
     </div>
   </nav>

@@ -13,7 +13,7 @@ const Main = (props) => {
       return updateInvalidPostcode('Please Enter A Valid Postcode.')
     }
     async function fetchData() {
-      const resp = await axios.get(`https://cors-anywhere.herokuapp.com/api.postcodes.io/postcodes/${userInput}`)
+      const resp = await axios.get(`/api/postcode/${userInput}`)
         .then(() => {
           props.history.push(`restlist/${userInput}`)
         })

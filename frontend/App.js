@@ -12,10 +12,10 @@ const App = () => (
   <BrowserRouter>
     <Header />
     <Switch>
-      <Route exact path="/project-2/restlist/rest/:restId" component={Rest}/>
-      <Route exact path="/project-2/restlist/:postcode" component={Restlist}/>
-      <Route exact path="/project-2/authors/" component={Authors} />
-      <Route exact path="/project-2" component={Main}/>
+      <Route exact path="/restlist/rest/:restId" component={Rest}/>
+      <Route exact path="/restlist/:postcode" component={Restlist}/>
+      <Route exact path="/authors/" component={Authors} />
+      <Route exact path="/" component={Main}/>
     </Switch>
   </BrowserRouter>
 )

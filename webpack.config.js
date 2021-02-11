@@ -4,38 +4,41 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DotEnv = require('dotenv-webpack')
 
 module.exports = env => {
-  const publicPath = env.NODE_ENV === 'local' ? {
-    publicPath: '/'
-  } : {}
   return {
-    entry: './src/index.js',
+    entry: './frontend/index.js',
     output: {
       filename: 'bundle.js',
-      path: path.resolve('.'),
-      ...publicPath
+      path: path.resolve('./backend/dist'),
+      publicPath: '/'
     },
+    devtool: 'source-map',
     module: {
       rules: [
         { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
         { test: /\.css$/, use: ['style-loader', 'css-loader'] },
         { test: /\.s(a|c)ss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
-        { test: /\.(png|jpe?g|gif)$/i, use: 'file-loader' }
+        { test: /\.(png|jpe?g|gif|svg)$/i, use: 'file-loader' }
       ]
     },
     devServer: {
-      publicPath: '/',
-      contentBase: path.resolve('src'),
+      contentBase: path.resolve('frontend'),
       hot: true,
       open: true,
-      port: 8000,
+      port: 8001,
       watchContentBase: true,
-      historyApiFallback: true
+      historyApiFallback: true,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8000',
+          secure: false
+        }
+      }
     },
     plugins: [
       new DotEnv(),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
+        template: 'frontend/index.html',
         filename: 'index.html',
         inject: 'body'
       })

@@ -1,18 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import StarRatingComponent from 'react-star-rating-component'
-require('dotenv').config()
+import axios from 'axios'
 
 const RestDetails = ({ rest }) => {
   const [starRating, updateStarRating] = useState(0)
   const [mapLocation, updateMapLocation] = useState('')
+  const [mapSrc, updateMapSrc] = useState('')
   const restAddress = [rest.Address.FirstLine, rest.Address.City, rest.Address.Postcode]
   const mapString = restAddress.join(', ')
   const regex = / /gi
-  const key = process.env.token
-  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${mapLocation}&zoom=17&scale=1&size=400x400&maptype=roadmap&key=${key}&format=png&visual_refresh=true`
   const mapAlt = `Google Map of ${mapString}`
   const mapHref = `https://www.google.com/maps/place/${mapLocation}`
-
+  
+  useEffect(() => {
+    async function fetchData() {
+      const { data } =  await axios.get(`/api/maps/${mapLocation}`)
+      updateMapSrc(data)
+      console.log(data)
+    }
+    fetchData()
+  }, [])
 
   if (starRating === 0) {
     updateMapLocation(restAddress.join('+').replace(regex, '+'))

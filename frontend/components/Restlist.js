@@ -11,7 +11,7 @@ const Restlist = (props) => {
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`https://cors-anywhere.herokuapp.com/https://uk.api.just-eat.io/restaurants/bypostcode/${postcode}`)
+      const { data } = await axios.get(`/api/just-eat/${postcode}`)
       updateRestList(data)
     }
     fetchData()
@@ -36,7 +36,7 @@ const Restlist = (props) => {
           return <Link style={{ color: '#2C3531', textDecoration: 'none' }}
             key={i}
             to={{
-              pathname: `/project-2/restlist/rest/${rest.Id}`,
+              pathname: `/restlist/rest/${rest.Id}`,
               state: { rest }
             }}
           >
