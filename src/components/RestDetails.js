@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import StarRatingComponent from 'react-star-rating-component'
+require('dotenv').config()
 
 const RestDetails = ({ rest }) => {
   const [starRating, updateStarRating] = useState(0)
@@ -7,7 +8,8 @@ const RestDetails = ({ rest }) => {
   const restAddress = [rest.Address.FirstLine, rest.Address.City, rest.Address.Postcode]
   const mapString = restAddress.join(', ')
   const regex = / /gi
-  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${mapLocation}&zoom=17&scale=1&size=400x400&maptype=roadmap&key=AIzaSyCu3ccf909RNQoQjHa3DUYSkIxbIsM5Hus&format=png&visual_refresh=true`
+  const key = process.env.token
+  const mapSrc = `https://maps.googleapis.com/maps/api/staticmap?center=${mapLocation}&zoom=17&scale=1&size=400x400&maptype=roadmap&key=${key}&format=png&visual_refresh=true`
   const mapAlt = `Google Map of ${mapString}`
   const mapHref = `https://www.google.com/maps/place/${mapLocation}`
 
