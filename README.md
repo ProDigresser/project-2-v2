@@ -2,7 +2,7 @@
 
 ### General Assembly Software Engineering Immersive
 
-# Project 2 - VERS 2.0 - Mount A Simple Node/Express Backend -  JustEat App
+# Project 2 - V 2.0 - Mount A Simple Node/Express Backend -  JustEat App
 ### By [Laurence 🍕](https://github.com/ProDigresser)
 
 ## The Overview 
