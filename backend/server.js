@@ -7,6 +7,7 @@ require('dotenv').config()
 const bodyParser = require('body-parser')
 const Router = require('./router')
 
+
 // Logging
 expressServer.use((req, res, next) => {
   console.log(`Incoming request, ${req.method} to ${req.url}`)
