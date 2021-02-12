@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import pizza from '../styles/pizza.jpg'
 
 const Main = (props) => {
-  
+
   const [userInput, updateUserInput] = useState('')
   const [invalidPostcode, updateInvalidPostcode] = useState('')
 
@@ -14,15 +14,18 @@ const Main = (props) => {
     }
     async function fetchData() {
       const resp = await axios.get(`/api/postcode/${userInput}`)
-        .then(() => {
-          props.history.push(`restlist/${userInput}`)
-        })
         .catch(function () {
           updateInvalidPostcode('Please Enter A Valid Postcode.')
         })
+      if (resp.data.message){
+        updateInvalidPostcode('Please Enter A Valid Postcode.')
+      } else {
+        props.history.push(`restlist/${userInput}`)
+      }
     }
     fetchData()
   }
+
 
   function updateInput(e) {
     e.preventDefault()
